@@ -13,7 +13,6 @@ by::by(QString name_performanc,QTableWidgetItem *itm,QWidget *parent) :
     vec.push_back("Партер");
     tupe = itm->column();
     number_tickets =itm->text().toInt();
-    //ui->lineEdit_4->setValidator(new QIntValidator(1, 1000, this));
     QRegExp int_i("[1-9][0-9]{0,2}");
     ui->lineEdit_4->setValidator(new QRegExpValidator(int_i,this));
     QRegExp rx("[А-Я,а-я]{1,30}");

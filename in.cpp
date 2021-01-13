@@ -64,7 +64,7 @@ void in::log_in()
     login = ui->lineEdit->text();
     password = ui->lineEdit_2->text();
 
-    if(condition_in == 1)
+    if(condition_in == condition_in_1)
     {
       read_in_log();
       if(correct_log==true)
@@ -73,7 +73,7 @@ void in::log_in()
       }
     }
 
-    if(condition_in == 2)
+    if(condition_in == condition_in_2)
     {
         if(login == "admin228" && password =="228")
         {

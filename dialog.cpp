@@ -22,35 +22,35 @@ Dialog::Dialog(QString name_p,int person_log,int NK,int row, int colum,QString f
     : QDialog(parent),  ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-    NKk=NK;
+    type_table=NK;
 
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
     QTextCodec::setCodecForLocale(codec);
 
-    if(NKk==1)
+    if(type_table==type_table_1)
     {
-       ui->tableWidget->setItemDelegateForColumn(1, new CChoicePathDelegate(NKk,1,this));
-       ui->tableWidget->setItemDelegateForColumn(2, new CChoicePathDelegate(NKk,2,this));
-       ui->tableWidget->setItemDelegateForColumn(0, new CChoicePathDelegate(NKk,0,this));
+       ui->tableWidget->setItemDelegateForColumn(colum_t_1, new CChoicePathDelegate(type_table,colum_t_1,this));
+       ui->tableWidget->setItemDelegateForColumn(colum_t_2, new CChoicePathDelegate(type_table,colum_t_2,this));
+       ui->tableWidget->setItemDelegateForColumn(colum_t_0, new CChoicePathDelegate(type_table,colum_t_0,this));
     }
-    if(NKk==4)
+    if(type_table==type_table_4)
     {
-       ui->tableWidget->setItemDelegateForColumn(0, new CChoicePathDelegate(NKk,0,this));
-       ui->tableWidget->setItemDelegateForColumn(1, new CChoicePathDelegate(NKk,0,this));
-       ui->tableWidget->setItemDelegateForColumn(2, new CChoicePathDelegate(NKk,0,this));
+       ui->tableWidget->setItemDelegateForColumn(colum_t_0, new CChoicePathDelegate(type_table,colum_t_0,this));
+       ui->tableWidget->setItemDelegateForColumn(colum_t_1, new CChoicePathDelegate(type_table,colum_t_0,this));
+       ui->tableWidget->setItemDelegateForColumn(colum_t_2, new CChoicePathDelegate(type_table,colum_t_0,this));
     }
-    if(NKk==3)
+    if(type_table==type_table_3)
     {
-       ui->tableWidget->setItemDelegateForColumn(0, new CChoicePathDelegate(NKk,0,this));
-       ui->tableWidget->setItemDelegateForColumn(1, new CChoicePathDelegate(NKk,0,this));
+       ui->tableWidget->setItemDelegateForColumn(colum_t_0, new CChoicePathDelegate(type_table,colum_t_0,this));
+       ui->tableWidget->setItemDelegateForColumn(colum_t_1, new CChoicePathDelegate(type_table,colum_t_0,this));
     }
-    if(NKk==5)
+    if(type_table==type_table_5)
     {
-        ui->tableWidget->setItemDelegateForColumn(0, new CChoicePathDelegate(NKk,1,this));
-        ui->tableWidget->setItemDelegateForColumn(1, new CChoicePathDelegate(NKk,2,this));
-        ui->tableWidget->setItemDelegateForColumn(2, new CChoicePathDelegate(NKk,3,this));
-        ui->tableWidget->setItemDelegateForColumn(3, new CChoicePathDelegate(NKk,4,this));
-        ui->tableWidget->setItemDelegateForColumn(4, new CChoicePathDelegate(NKk,5,this));
+        ui->tableWidget->setItemDelegateForColumn(colum_t_0, new CChoicePathDelegate(type_table,colum_t_1,this));
+        ui->tableWidget->setItemDelegateForColumn(colum_t_1, new CChoicePathDelegate(type_table,colum_t_2,this));
+        ui->tableWidget->setItemDelegateForColumn(colum_t_2, new CChoicePathDelegate(type_table,colum_t_3,this));
+        ui->tableWidget->setItemDelegateForColumn(colum_t_3, new CChoicePathDelegate(type_table,colum_t_4,this));
+        ui->tableWidget->setItemDelegateForColumn(colum_t_4, new CChoicePathDelegate(type_table,colum_t_5,this));
     }
 
     ui->tableWidget->setRowCount(row);
@@ -59,24 +59,24 @@ Dialog::Dialog(QString name_p,int person_log,int NK,int row, int colum,QString f
     ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    if(NKk == 1)
+    if(type_table == colum_t_1)
     {
         ui->tableWidget->setHorizontalHeaderLabels( QStringList()<<"Спектакли"<<"Дата"<<"Время"<<"Заказать билет");
     }
-    if(NKk == 2)
+    if(type_table == colum_t_2)
     {
         ui->tableWidget->setHorizontalHeaderLabels(QStringList()<<"Login"<<"Password");
     }
-    if(NKk == 4)
+    if(type_table == colum_t_4)
     {
         ui->tableWidget->setHorizontalHeaderLabels(QStringList()<<"Авторы"<<"Постановщики"<<"Актеры");
     }
-    if(NKk == 3)
+    if(type_table == colum_t_3)
     {
         ui->tableWidget->setHorizontalHeaderLabels(QStringList()<<"Балкон"<<"Ложи"<<"Партер");
         ui->tableWidget->setVerticalHeaderLabels(QStringList() << "Цена" << "Количество" );
     }
-    if(NKk == 5)
+    if(type_table == colum_t_5)
     {
         ui->tableWidget->setHorizontalHeaderLabels(QStringList()<<"Фамилия"<<"Имя"<<"Отчество"<<"Кол-во билетов"<<"Номер телефона"<<"Тип билета"<<"Спектакль");
     }
@@ -85,11 +85,11 @@ Dialog::Dialog(QString name_p,int person_log,int NK,int row, int colum,QString f
 
     person = person_log;
 
-    if(NK==1 &&(person==2||person==1))
+    if(type_table== type_table_1 &&(person== type_person_2||person== type_person_1))
     {
       menu = new QMenu("Menu");
 
-     if(person==2)
+     if(person== type_person_2)
      {
         editCasir = new QAction("Кассиры");
         menu->addAction(editCasir);
@@ -107,19 +107,19 @@ Dialog::Dialog(QString name_p,int person_log,int NK,int row, int colum,QString f
       connect(application, SIGNAL(triggered()), this, SLOT(make_window_application()));
     }
 
-    if(person==1||person==3||NKk==3)
+    if(person== type_person_1||person== type_person_3||type_table==type_table_3)
     {
       ui->pushButton_2->hide();
       ui->pushButton->hide();
     }
 
-    if(NKk==5 && person==1)
+    if(type_table==type_table_5 && person==type_person_1)
     {
        ui->pushButton_2->show();
        ui->pushButton->show();
     }
 
-    if(NKk==3)
+    if(type_table==type_table_3)
     {
         ui->lineEdit->hide();
         ui->pushButton_3->hide();
@@ -157,7 +157,7 @@ void Dialog::readfile()
                 newit->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
               }
 
-              if(NKk==5)
+              if(type_table==type_table_5)
               {
                   stream >> line1;
                   QString s =line1;
@@ -166,7 +166,7 @@ void Dialog::readfile()
                   newit->setText(newS);
                   ui->tableWidget->setItem(i,j,newit);
               }
-              else if(NKk==1)
+              else if(type_table==type_table_1)
               {
                   QString list2;
                   list2 = stream.readLine();
@@ -193,7 +193,7 @@ void Dialog::readfile()
                    j=j+3;
                   }
               }
-              else if(NKk==4)
+              else if(type_table==4)
               {
                   QString list2;
                   list2 = stream.readLine();
@@ -224,7 +224,7 @@ void Dialog::readfile()
                   newit->setText(line1);
                   ui->tableWidget->setItem(i,j,newit);
               }
-              if(NKk==1 && j==3)
+              if(type_table==type_table_1 && j==3)
               {
                 btn = new QPushButton( "Купить!" );
                 ui->tableWidget->setCellWidget(i,j,btn);
@@ -271,18 +271,18 @@ void Dialog::savefile()
           {
             QTableWidgetItem *itm_1 = ui->tableWidget->item(i,j);
 
-            if(NKk==5)
+            if(type_table==5)
             {
                 QString s = itm_1->text();
                 QStringList sList = s.split(" ");
                 QString newS = sList.join("*");
                 stream <<newS<<" ";
             }
-            else if(NKk==1)
+            else if(type_table==type_table_1)
             {
                stream <<"/"<<itm_1->text();
             }
-            else if(NKk==4)
+            else if(type_table==type_table_4)
             {
                stream <<itm_1->text()<< "( "<<vec[i*3+j]<<" )";
             }
@@ -291,7 +291,7 @@ void Dialog::savefile()
                stream <<itm_1->text()<<" ";
             }
           }
-          if(NKk==1)
+          if(type_table==type_table_1)
           {
             stream<<"/";
           }
@@ -314,7 +314,7 @@ void Dialog::search()
 
     bool find = false;
 
-    if(NKk==1)
+    if(type_table==type_table_1)
     {
       for(int i =0;i< ui->tableWidget->rowCount();i++)
       {
@@ -338,7 +338,7 @@ void Dialog::search()
         errorMessage.exec();
       }
     }
-    else if(NKk==4||NKk==2)
+    else if(type_table==type_table_4||type_table==type_table_2)
     {
         for(int i =0;i< ui->tableWidget->rowCount();i++)
         {
@@ -364,7 +364,7 @@ void Dialog::search()
           errorMessage.exec();
         }
     }
-    if(NKk==5)
+    if(type_table==type_table_5)
     {
         QStringList list;
 
@@ -408,7 +408,7 @@ void Dialog::add()
          ui->tableWidget->setItem (ui->tableWidget->rowCount()-1,ui->tableWidget->columnCount()-count_coum, new QTableWidgetItem());
          count_coum--;
      }
-     if(NKk==1)
+     if(type_table==type_table_1)
      {
          QTableWidgetItem *itm =new QTableWidgetItem();
          itm->setText("Купить");
@@ -418,7 +418,7 @@ void Dialog::add()
          ui->tableWidget->setCellWidget(ui->tableWidget->rowCount()-1,3,btn);
          connect( btn, SIGNAL( clicked( bool ) ), SLOT( make_windows()));
      }
-     if(NKk==4)
+     if(type_table==4)
      {
          vec.push_back("");
          vec.push_back("");
@@ -442,7 +442,7 @@ void Dialog::removerow()
        }
        else
        {
-            if(NKk==5 && add_row==0)
+            if(type_table==type_table_5 && add_row==0)
             {
                 int count = ui->tableWidget->item(itm->row(),4-1)->text().toInt();
                 QString type = ui->tableWidget->item(itm->row(),7-2)->text();
@@ -451,15 +451,15 @@ void Dialog::removerow()
 
               if(type=="Балкон")
               {
-                 type_int=0;
+                 type_int= colum_t_0;
               }
               else if(type=="Ложи")
               {
-                 type_int=1;
+                 type_int= colum_t_1;
               }
                else if(type=="Партер")
               {
-                 type_int=2;
+                 type_int= colum_t_2;
               }
                   read_r.recalculation(false,name_performance,count,type_int);
                   ui->tableWidget->removeRow(itm->row());
@@ -498,7 +498,7 @@ void Dialog::make_windows()
 {
     QTableWidgetItem *itm = ui->tableWidget->currentItem();
 
-    if(NKk==1)
+    if(type_table==1)
     {
        if(itm->column()==0&&itm->text()!="")
        {
@@ -506,12 +506,12 @@ void Dialog::make_windows()
            itm_calor = itm; //ui->tableWidget->currentItem();
            itm_calor->setBackground(Qt::white);
        }
-       if(itm->column()==3)
+       if(itm->column()== colum_t_3)
        {
           tickets *w3 = new tickets(ui->tableWidget->item(itm->row(),0)->text(),person);
        }
     }
-    if(NKk==4)
+    if(type_table==type_table_4)
     {
        // QTableWidgetItem *itm = ui->tableWidget->currentItem();
 
@@ -531,7 +531,7 @@ void Dialog::make_windows()
             itm_calor->setBackground(Qt::white);
         }
     }
-    if(NKk==3)
+    if(type_table==type_table_3)
     {
       if((itm->row()==1)&&(itm->text()!=""))
       {
@@ -561,7 +561,7 @@ void Dialog::closeEvent(QCloseEvent *e)
        }
        else
        {
-           if(NKk==2)
+           if(type_table==type_table_2)
            {
               for(int i=0; i < ui->tableWidget->rowCount();i++)
               {
@@ -578,7 +578,7 @@ void Dialog::closeEvent(QCloseEvent *e)
                   }
               }
            }
-           if(NKk==5 && add_row>0)
+           if(type_table==type_table_5 && add_row>0)
            {
                for(int i = 0; i<add_row;i++)
                {
@@ -631,7 +631,7 @@ void Dialog::closeEvent(QCloseEvent *e)
                }
            }
        }
-       if(NKk==1||NKk==2||NKk==3)
+       if(type_table==type_table_1||type_table==type_table_2||type_table==type_table_3)
        {
            for(int i =0;i< ui->tableWidget->rowCount();i++)
            {

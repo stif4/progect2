@@ -18,8 +18,17 @@ public:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
 
 private:
-    int NKk;
-    int stay_NKk;
+    int type_table;
+    int stay_type_table;
+
+    int colum_1=1;
+    int colum_2=2;
+    int colum_3=3;
+    int colum_4=4;
+    int colum_5=5;
+    int colum_6=6;
+    int colum_7=7;
+
 };
 
 #endif // CCHOICEPATHDELEGATE_H

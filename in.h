@@ -33,11 +33,15 @@ private:
     QString password;
 
     int condition_in;
+    int condition_in_1=1;
+    int condition_in_2=2;
     bool correct_log = false;
 
     QVector<QString> log;
 
     QString file_cassir = "C:/Users/User/Documents/cassirs.txt";
+
+
 };
 
 #endif // IN_H

@@ -6,10 +6,6 @@
 #include <QDebug>
 int main(int argc, char *argv[])
 {
-    //QTextCodec::setCodecForLocale(QTextCodec::codecForName("Windows-1251"));
-    //QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-   // QTextCodec::setCodecForLocale(codec);
-
     QApplication a(argc, argv);
     login log;
     log.show();

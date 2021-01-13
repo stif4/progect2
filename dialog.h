@@ -43,7 +43,7 @@ public:
     friend void make_cassir();
 private:
     Ui::Dialog *ui;
-    int NKk;
+    int type_table;
     int person;
     QString name_performance;
 
@@ -67,5 +67,27 @@ private:
 
     QPushButton* btn;
     bool g=true;
+
+    int colum_t_0=0;
+    int colum_t_1=1;
+    int colum_t_2=2;
+    int colum_t_3=3;
+    int colum_t_4=4;
+    int colum_t_5=5;
+    int colum_t_6=6;
+    int colum_t_7=7;
+
+    int type_person_1=1;
+    int type_person_2=2;
+    int type_person_3=3;
+
+    int type_table_1=1;
+    int type_table_2=2;
+    int type_table_3=3;
+    int type_table_4=4;
+    int type_table_5=5;
+
+
+
 };
 #endif // DIALOG_H
